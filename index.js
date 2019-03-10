@@ -49,15 +49,15 @@ server.listen(config.port, () => {
   console.log(`Server running on port ${config.port}`)
 })
 
-
-const PORT =process.env.PORT || 3001
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
-})
-
 // Tapahtumankäsittelijäfunktio sulkee tietokantayhteyden.
 server.on('close', () => {
   mongoose.connection.close()
+
+  //Herokua varten
+  const PORT =process.env.PORT || 3004
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`)
+  })
 })
 // Sekä sovellus app että sitä suorittava server-olio määritellään eksportattavaksi tiedostosta.
 // Tämä mahdollistaa sen, että testit voivat käynnistää ja sammuttaa backendin.
